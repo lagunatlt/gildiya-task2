@@ -20,37 +20,37 @@ let maxTime = +prompt('Максимальное время работы в се�
 thirdArg(timeSet, maxTime);
 	
 function thirdArg(timeSet, maxTime) {
-		const start = new Date().getTime();
+const start = new Date().getTime();
 
-		let number1 = function() {
-			let timeInterval = new Date().getTime();
-					if (((timeInterval - start) / 1000) <= maxTime) {
-							setTimeout(function() {
-								let number12 = prompt('введите четное или нечетное число', 1) % 2;
-								
-									if (number12 || isNaN(number12)){
-										console.log(`Введено нечетное число или символ отличный от числа, повторяем заново через ${timeSet}сек`);
-										number1();
-									} else {
-										console.log('Число четное');
-										number2();
-									};
-							}, timeSet * 1000);
-					} else {
-					console.log('Время вышло')
-					number2();
-					}
+let number1 = function() {
+	let timeInterval = new Date().getTime();
+			if (((timeInterval - start) / 1000) <= maxTime) {
+					setTimeout(function() {
+						let number12 = prompt('введите четное или нечетное число', 1) % 2;
+						
+							if (number12 || isNaN(number12)){
+								console.log(`Введено нечетное число или символ отличный от числа, повторяем заново через ${timeSet}сек`);
+								number1();
+							} else {
+								console.log('Число четное');
+								number2();
+							};
+					}, timeSet * 1000);
+			} else {
+			console.log('Время вышло')
+			number2();
 			}
+	}
 
-		let number2 = function () {
-			const end = new Date().getTime();
-			const obj = {
-				'Переодичность выполнения': timeSet + 'сек',
-				'Максимальное время': `${((end - start)/1000).toFixed(1)}сек`
-			};
-			console.log(obj);
-		};
-		number1();
+let number2 = function () {
+	const end = new Date().getTime();
+	const obj = {
+		'Переодичность выполнения': timeSet + 'сек',
+		'Максимальное время': `${((end - start)/1000).toFixed(1)}сек`
+	};
+	console.log(obj);
+};
+number1();
 }
 
 
