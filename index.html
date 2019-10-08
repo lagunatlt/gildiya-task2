@@ -12,46 +12,52 @@
 
 
 <script>
-
-
-let timeSet = +prompt('Введите интервал в секундах', 2);
-let maxTime = +prompt('Максимальное время работы в секундах', 20);
-
-thirdArg(timeSet, maxTime);
 	
-function thirdArg(timeSet, maxTime) {
-const start = new Date().getTime();
 
-let number1 = function() {
-	let timeInterval = new Date().getTime();
-			if (((timeInterval - start) / 1000) <= maxTime) {
-					setTimeout(function() {
-						let number12 = prompt('введите четное или нечетное число', 1) % 2;
-						
-							if (number12 || isNaN(number12)){
-								console.log(`Введено нечетное число или символ отличный от числа, повторяем заново через ${timeSet}сек`);
-								number1();
-							} else {
-								console.log('Число четное');
-								number2();
-							};
-					}, timeSet * 1000);
-			} else {
-			console.log('Время вышло')
-			number2();
-			}
-	}
 
-let number2 = function () {
-	const end = new Date().getTime();
-	const obj = {
-		'Переодичность выполнения': timeSet + 'сек',
-		'Максимальное время': `${((end - start)/1000).toFixed(1)}сек`
-	};
-	console.log(obj);
-};
-number1();
+let startTime
+let time
+
+function start(func1, func2, timeInput = { timeSet: 2, maxTime: 20 }) {
+	time = timeInput;
+	startTime = new Date().getTime();
+
+	numberInput();
 }
+
+let numberInput = function func1() {
+	let timeInterval = new Date().getTime();
+	if (((timeInterval - startTime) / 1000) <= time.maxTime) {
+		let numberSet = prompt('введите четное или нечетное число', 1) % 2;
+
+			if (numberSet || isNaN(numberSet)) {
+				console.log(`Введено нечетное число или символ отличный от числа, повторяем заново через ${time.timeSet}сек`);
+				setTimeout(function() {
+						func1();
+				}, time.timeSet * 1000);
+			} else {
+				console.log('Введено четное число');
+				callback();
+			};
+			
+	} else {
+		console.log('Время вышло');
+		callback();
+	} 
+};
+
+let callback = function func2() {
+	let endTime = new Date().getTime();
+		let objTime = {
+			'Переодичность выполнения': time.timeSet + 'сек',
+			'Максимальное время': `${((endTime - startTime)/1000).toFixed(1)}сек`
+		};
+		console.log(objTime);
+};
+
+start(numberInput, callback, time);
+
+
 
 
 
