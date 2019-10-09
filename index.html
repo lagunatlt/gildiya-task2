@@ -22,7 +22,7 @@ function start(func1, func2, timeInput = { timeSet: 2, maxTime: 20 }) {
 	time = timeInput;
 	startTime = new Date().getTime();
 
-	numberInput();
+	func1();
 }
 
 let numberInput = function func1() {
@@ -37,7 +37,7 @@ let numberInput = function func1() {
 				}, time.timeSet * 1000);
 			} else {
 				console.log('Введено четное число');
-				callback();
+				callback()
 			};
 			
 	} else {
